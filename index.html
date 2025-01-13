@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <title>Biscuit Clicker</title>
+
+    <!-- Basic CSS -->
+    <style>
+        div {
+            margin: 12px;
+        }
+        button {
+            margin: 12px;
+        }
+    </style>
+</head>
+
+<!-- The main HTML elements -->
+
+<body onload="initializeNumber()" style="background-color:Aquamarine">
+    <div id="intro"><b>Click to add biscuits to your collection! :)</b></div>
+    <div id="status">
+        <span id="biscuits"></span>
+    </div>
+    <button onclick="increment()">Increment</button>
+    <button onclick="oneUp()">+1 Click Power!</button>
+    <button onclick="autoUp()">+1 Autoclicker!</button>
+    <div id="clickCost">Click power cost: <span id="clickCostVal"></span></div>
+    <div id="autoCost">Autoclicker cost: <span id="autoCostVal"></span></div>
+</body>
+
+<!-- Your code logic (JavaScript) -->
+<script>
+    function initializeNumber() {
+        var biscuitsStart = "0";
+        var clickCostStart = "20";
+        var autoCostStart = "25";
+        setInterval(autoClick, 1000);
+        document.getElementById("biscuits").innerHTML = biscuitsStart;
+        document.getElementById("clickCostVal").innerHTML = clickCostStart;
+        document.getElementById("autoCostVal").innerHTML = autoCostStart;
+    }
+
+    async function oneUp() {
+        let number = parseInt(document.getElementById("biscuits").innerHTML);
+        let clickCost = parseInt(document.getElementById("clickCostVal").innerHTML);
+        const response = await fetch("/oneUp", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ "biscuits": number, "clickCostVal":clickCost})
+        });
+        const json = await response.json();
+
+        document.getElementById("biscuits").innerHTML = json["biscuits"];
+        document.getElementById("clickCostVal").innerHTML = json["clickCostVal"]
+    }
+
+    async function autoUp() {
+        let number = parseInt(document.getElementById("biscuits").innerHTML);
+        let autoCost = parseInt(document.getElementById("autoCostVal").innerHTML);
+        const response = await fetch("/buyAutoClick", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ "biscuits": number, "autoCostVal":autoCost})
+        });
+        const json = await response.json();
+
+        document.getElementById("biscuits").innerHTML = json["biscuits"];
+        document.getElementById("autoCostVal").innerHTML = json["autoCostVal"]
+    }
+
+    async function increment() {
+        let number = parseInt(document.getElementById("biscuits").innerHTML);
+
+        const response = await fetch("/increment", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ "biscuits": number })
+        });
+        const json = await response.json();
+
+        document.getElementById("biscuits").innerHTML = json["answer"];
+
+    }
+
+    async function autoClick() {
+        let number = parseInt(document.getElementById("biscuits").innerHTML);
+
+        const response = await fetch("/autoClick", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({ "biscuits": number })
+        });
+        const json = await response.json();
+
+        document.getElementById("biscuits").innerHTML = json["biscuits"];
+    }
+</script>
+
+</html>
