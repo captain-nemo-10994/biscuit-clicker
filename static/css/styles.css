@@ -1,0 +1,41 @@
+body {
+	background-color: CornflowerBlue;
+}
+
+#intro {
+	text-align: center;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 34px;
+	margin-top: 42px;
+	margin-bottom: 42px;
+}
+
+#status {
+	text-align: center;
+	margin-bottom: 42px;
+}
+
+#biscuits {
+	width: 50%;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 48px;	
+	font-weight: bold;
+	color: GreenYellow;
+}
+
+.costLine {
+	text-align: center;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.costVal {
+	color:Crimson;
+}
+
+.button {
+	text-align: center;
+	margin-bottom: 42px;	
+}
+
