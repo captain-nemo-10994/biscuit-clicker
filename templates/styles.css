@@ -1,0 +1,21 @@
+body {
+	background-color: CornflowerBlue;
+}
+
+#intro {
+	text-align: center;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 34px;
+}
+
+#status {
+	text-align: center;
+}
+
+#biscuits {
+	width: 50%;
+	font-family: "Arial Narrow", sans-serif;
+	font-size: 48px;	
+	font-weight: bold;
+	color: GreenYellow;
+}
